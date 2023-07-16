@@ -1,5 +1,6 @@
 # Shitty Handlebars
 
+![](./shitty.jpg)
 Shitty Handlebars is a shitty library that provides a subpar implementation of the popular Handlebars templating engine.
 
 ## Features
