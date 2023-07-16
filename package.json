@@ -1,0 +1,11 @@
+{
+  "name": "shitty-handlebars",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "node test.js"
+    
+  },
+  "license": "MIT"
+}
