@@ -11,6 +11,9 @@ const template = `
     <p>{{description}}</p>
     <p>{{date}}</p>
   {{/info}}
+  {{#if possibleInfo}}
+    <p>this is a conditional</p>
+  {{/if}}
 `;
 
 const data = {
@@ -20,6 +23,7 @@ const data = {
     { name: 'Jane', email: 'jane@example.com' },
     { name: 'Alice', email: 'alice@example.com' }
   ],
+  possibleInfo: true,
   info: {
     description: 'This is a test',
     date: '2020-01-01'
