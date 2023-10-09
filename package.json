@@ -5,10 +5,11 @@
   "type": "module",
   "scripts": {
     "test": "node test.js"
-    
   },
   "license": "Do What the Fuck You Want to",
   "Author": "Elliot B",
-  "description": "A shitty handlebars implementation"
-
+  "description": "A shitty handlebars implementation",
+  "dependencies": {
+    "nanoid": "^4.0.2"
+  }
 }

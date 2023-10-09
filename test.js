@@ -11,8 +11,27 @@ const template = `
     <p>{{description}}</p>
     <p>{{date}}</p>
   {{/info}}
+  {{#if info}}ddd{{/if}}
+  <p>{{test.test2.test3}}</p>
 `;
+function splitTemplateString(str) {
+  const regex = /{{\s*(\w+)\s*}}/g;
+  const matches = str.match(regex);
+  const parts = str.split(regex);
 
+  const result = [];
+
+  for (let i = 0; i < parts.length; i++) {
+    result.push(parts[i]);
+    if (i < parts.length - 1) {
+      const match = matches[i];
+      const label = match.substring(2, match.length - 2);
+      result.push(label);
+    }
+  }
+
+  return result;
+}
 const data = {
   title: 'User List',
   users: [
@@ -20,6 +39,12 @@ const data = {
     { name: 'Jane', email: 'jane@example.com' },
     { name: 'Alice', email: 'alice@example.com' }
   ],
+  test: {
+    test2: {
+      test3: 'test3'
+    }
+  },
+  
   info: {
     description: 'This is a test',
     date: '2020-01-01'
@@ -27,4 +52,5 @@ const data = {
 };
 
 const output = renderTemplate(template, data);
+//let g = splitTemplateString(template);
 console.log(output);
