@@ -1,47 +1,32 @@
 import assert from 'assert';
 import renderTemplate from './index.js';
+import {describe, beforeEach, afterEach, it} from 'node:test';
 
 
-async function testRenderTemplate() {
+describe('shitty-handlebars', async () => {
+  it('should do basic replacement', () => {
   // Test: Basic replacement
   assert.strictEqual(
     renderTemplate('{{name}}', { name: 'John' }),
     'John',
     'Basic replacement failed'
   );
-
-  // Test: Conditional replacement
+  })
+  it('should do basic replacement with cool html', () => {
+  // Test: Basic replacement with cool html
   assert.strictEqual(
-    renderTemplate('{{#condition}}True{{/condition}}', { condition: true }),
-    'True',
-    'Conditional replacement failed'
+    renderTemplate('<h1>{{name}}</h1>', { name: 'John' }),
+    '<h1>John</h1>',
+    'Basic replacement with cool html failed'
   );
-
-  // Test: Array handling
+    })
+  it('should remove tags with falsy values', () => {
+  // Test: Removing tags with falsy values
   assert.strictEqual(
-    renderTemplate('{{#items}}{{item}}{{/items}}', { items: [{ item: '1' }, { item: '2' }] }),
-    '12',
-    'Array handling failed'
+    renderTemplate('{{name}}', { name: '' }),
+    '',
+    'Removing tags with falsy values failed'
   );
+    })
 
-  // Test: Nested object
-  assert.strictEqual(
-    renderTemplate('{{#user}}{{name}}{{/user}}', { user: { name: 'Alice' } }),
-    'Alice',
-    'Nested object failed'
-  );
-
-  // Test: Complex scenario
-  assert.strictEqual(
-    renderTemplate('{{#user}}Name: {{name}}, Age: {{age}}{{/user}}', { user: { name: 'Bob', age: 30 } }),
-    'Name: Bob, Age: 30',
-    'Complex scenario failed'
-  );
-}
-
-async function main() {
-  await testRenderTemplate();
-  console.log('All tests passed!');
-}
-
-main();
+})

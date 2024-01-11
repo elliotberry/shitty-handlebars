@@ -4,7 +4,7 @@
   "main": "./index.js",
   "type": "module",
   "scripts": {
-    "test": "node test.js"
+    "test": "node index.test.js"
   },
   "prettier": {
     "trailingComma": "es5",
@@ -37,12 +37,9 @@
     "package.json",
     "README.md"
   ],
-  "license": "Do What the Fuck You Want to",
+
   "Author": "elliot",
   "license": "The Unlicense",
-  "dependencies": {
-    "nanoid": "^4.0.2"
-  },
   "devDependencies": {
     "eslint": "^8.29.0",
     "eslint-config-prettier": "^8.5.0",

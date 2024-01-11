@@ -7,6 +7,10 @@ const render = function (template, data) {
     // If the template is not a string, return an empty string
     return '';
   }
+  if (typeof template === 'function') {
+    // If the template is a function, call it with the data and return the result
+    return template(data);
+  }
   // Regular expression to match Handlebars-style template tags
   const regex = /{{\s*#(\w+)(.*?)}}([\s\S]*?){{\s*\/\1\s*}}/g;
 
