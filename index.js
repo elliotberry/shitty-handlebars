@@ -1,28 +1,9 @@
-function findValues(obj, path) {
-  const keys = path.split('.');
-  let values = [];
-
-  function traverse(o, keys) {
-    if (keys.length === 0) {
-      values.push(o);
-    } else {
-      const key = keys.shift();
-      if (o.hasOwnProperty(key)) {
-        traverse(o[key], keys);
-      }
-    }
-  }
-
-  traverse(obj, keys);
-
-  return values;
-}
+import { findValues } from "./findValues.js";
 
 const renderTemplate = function (template, data) {
   const regex = /{{\s*#(\w+)(.*?)}}([\s\S]*?){{\s*\/\1\s*}}/g;
 
   template = template.replace(regex, (match, key, condition, innerTemplate) => {
-    console.log(key);
     const value = findValues(data, key)[0];
     if (Array.isArray(value)) {
       return value.map(item => renderTemplate(innerTemplate, item)).join('');

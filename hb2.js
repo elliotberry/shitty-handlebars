@@ -1,4 +1,5 @@
 import {nanoid} from 'nanoid';
+
 const getTypeOfTag = tag => {
   if (tag.startsWith('#each')) {
     return 'iterator';
