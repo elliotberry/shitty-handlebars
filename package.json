@@ -32,6 +32,11 @@
       "no-console": "off"
     }
   },
+  "files": [
+    "./*.js",
+    "package.json",
+    "README.md"
+  ],
   "license": "Do What the Fuck You Want to",
   "Author": "elliot",
   "license": "The Unlicense",
