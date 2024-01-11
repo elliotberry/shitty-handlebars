@@ -38,7 +38,7 @@
     "README.md"
   ],
 
-  "Author": "elliot",
+  "author": "elliot",
   "license": "The Unlicense",
   "devDependencies": {
     "eslint": "^8.29.0",
