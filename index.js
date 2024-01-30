@@ -1,6 +1,6 @@
 import { findValues } from "./findValues.js";
 
-const render = async function (template, data) {
+const render = function (template, data) {
   if (!template) {
     return '';
   }
@@ -8,7 +8,7 @@ const render = async function (template, data) {
     return template(data);
   }
 
-  // Handle if statements
+  // Handle if statements 
   const ifRegex = /{{\s*#if\s*(\S+?)\s*}}([\s\S]*?){{\s*\/if\s*}}/g;
   template = template.replace(ifRegex, (match, condition, innerTemplate) => {
     const value = findValues(data, condition)[0];
@@ -19,14 +19,24 @@ const render = async function (template, data) {
     }
   });
 
-  // Handle loops and objects
+  // Handle loops and objects {#key}...{/key}
   const regex = /{{\s*#(\w+)(.*?)}}([\s\S]*?){{\s*\/\1\s*}}/g;
   template = template.replace(regex, (match, key, condition, innerTemplate) => {
     const value = findValues(data, key)[0];
     if (Array.isArray(value)) {
-      return value.map(item => render(innerTemplate, item)).join('');
+      return value.map(item => {
+        const newData = { ...data, this: item };
+        return render(innerTemplate, newData);
+      }).join('');
     } else if (typeof value === 'object') {
-      return render(innerTemplate, value);
+      if (value !== null) {
+        return Object.keys(value).map(objKey => {
+          const newData = { ...data, this: value[objKey] };
+          return render(innerTemplate, newData);
+        }).join('');
+      } else {
+        return '';
+      }
     } else if (condition && findValues(data, condition.trim())[0]) {
       return render(innerTemplate, data);
     } else {
