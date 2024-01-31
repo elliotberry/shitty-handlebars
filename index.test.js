@@ -141,5 +141,5 @@ describe('shitty-handlebars', async () => {
             'should allow for complex multiline templates failed'
         )
     })  
-
 })
+
