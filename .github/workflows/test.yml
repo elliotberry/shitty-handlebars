@@ -19,3 +19,17 @@ jobs:
         uses: borales/actions-yarn@v4
         with:
           cmd: test
+      - name: Notify on Failure
+        if: failure()
+        run: >
+          curl -X POST https://notify-me-you-idiot.daddy.cat/
+          -H "Content-Type: application/json"
+          -H ${{ secrets.SECRET_HEADER }}
+          -d '{"status": "failure", "message": "Test failed"}'
+      - name: Notify on Success
+        if: success()
+        run: >
+          curl -X POST https://notify-me-you-idiot.daddy.cat/
+          -H "Content-Type: application/json"
+          -H ${{ secrets.SECRET_HEADER }}
+          -d '{"status": "success", "message": "Test passed"}'
