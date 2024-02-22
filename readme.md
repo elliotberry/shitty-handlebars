@@ -1,7 +1,7 @@
 # Shitty Handlebars
 
 ![](./small.jpg)
-Shitty Handlebars is a shitty library that provides a subpar implementation of the popular Handlebars templating engine, but it has no dependencies and it's focusedf more towards backend generation. My use-case: cloudflare worker dynamic html routes.
+Shitty Handlebars is a shitty library that provides a subpar implementation of the popular Handlebars templating engine, BUT it has no dependencies and it's gotta focus on backend generation. My use-case: cloudflare worker dynamic html routes.
 
 ## Features
 - Conditional Rendering (#if): Implements simple conditional statements.
@@ -12,37 +12,42 @@ Shitty Handlebars is a shitty library that provides a subpar implementation of t
 
 ## Installation
 
-To install Shitty Handlebars, you probably can't use yarn unless i remember to upload it. Here's how you would install it if i do:
 ```shell
-yarn add @elliotberry/shitty-handlebars
+yarn add elliotberry/shitty-handlebars
 ```
-## Usage
+## Example
 
-Using Shitty Handlebars is straightforward. Simply require the library and start creating shitty templates.
+Using Shitty Handlebars is straightforward. Here's the kitchen sink of available features:
+
+A template example:
+
+```
+<h1>Hello, {{name}}!</h1>
+{{#if isATurtle}}<h3>Turtle confirmed.</h3>{{/if}}
+{{#traits}}<strong>{{this}}</strong>{{/traits}}
+```
+Some data:
 
 ```javascript
-import sb from "shitty-handlebars"
+const data = { 
+	name: 'Mitch McConnell', 
+	isATurtle: true, 
+	traits: ['old', 'turtle-like']
+};
+```
+Finally, the script:
 
-const template = '<h1>Hello, {{name}}!</h1>';
-const data = { name: 'Shitty Handlebars' };
+```javascript
+import shb from "shitty-handlebars"
 
-const renderedTemplate = sb(template, data);
+const template = `<h1>Hello, {{name}}!{{#if isATurtle}}<h3>Turtle confirmed.</h3>{{/if}}{{#traits}}<strong>{{this}}</strong>{{/traits}}`;
+const data = { name: 'Mitch McConnell', isATurtle: true, traits: ['old', 'turtle-like']};
+
+const renderedTemplate = shb(template, data);
 
 console.log(renderedTemplate);
 ```
 
-## Known Issues
-
-- What I don't know can't hurt me
-
-## Contributing
-
-Contributions to Shitty Handlebars are not encouraged nor desired. However, if you insist on making this library even shittier, you can fork the repository, make your changes, and submit a pull request. Please be aware that pull requests will be rejected.
-
-## License
-
-This project is licensed under the **WTFPL** (Do What the Fuck You Want to Public License). See the [LICENSE](LICENSE) file for more details.
-
 ## Acknowledgments
 
-Shitty Handlebars would not be possible without the inspiration and support from the developers who strive to create robust and reliable software. That's not me, though.
+Thanks, AI.
